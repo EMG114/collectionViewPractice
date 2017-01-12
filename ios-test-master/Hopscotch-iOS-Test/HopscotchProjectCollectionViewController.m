@@ -8,6 +8,7 @@
 
 #import "HopscotchProjectCollectionViewController.h"
 #import "HopscotchDatastore.h"
+#import "HopscotchProjectCollectionViewCell.h"
 
 @interface HopscotchProjectCollectionViewController ()
 @property (strong, nonatomic) HopscotchDatastore *dataStore;
@@ -28,6 +29,11 @@ static NSString * const reuseIdentifier = @"Cell";
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
     
     // Do any additional setup after loading the view.
+    
+    self.dataStore = [HopscotchDatastore sharedDataStore];
+    [self.dataStore getProjectsWithCompletion:^(BOOL success) {
+        [self.collectionView reloadData];
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
