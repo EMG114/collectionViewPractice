@@ -12,12 +12,12 @@
 
 @implementation HopscotchAPIClient
 
-NSString *const HOPSCOTCH_API_URL = @" // create a string to turn into a URL";
+NSString *const HOPSCOTCH_API_URL = @"https://hopscotch-ios-test.herokuapp.com/projects";
 
 +(void)getProjectsWithCompletion:(void (^)(NSArray *))completionBlock{
 
      // create a string to turn into a URL
-    NSString *urlString = @" // create a string to turn into a URL";
+    NSString *urlString = @"https://hopscotch-ios-test.herokuapp.com/projects";
     
     NSURL *nsurlString = [NSURL URLWithString:urlString];
     //conversion of urlString into NSURL String

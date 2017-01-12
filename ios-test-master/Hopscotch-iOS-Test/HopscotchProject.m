@@ -10,16 +10,6 @@
 
 @implementation HopscotchProject
 
-- (id)initWithTitle:(NSString *)title author:(NSString *)author screenShotURL:(NSString *) screenShotURL{
-    
-    if ((self = [super init])) {
-        self.title = title;
-        self.author = author;
-        self.screenShotURL = screenShotURL;
-    }
-    return self;
-
-}
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary {
     
