@@ -9,6 +9,7 @@
 #import "HopscotchProjectCollectionViewController.h"
 #import "HopscotchDatastore.h"
 #import "HopscotchProjectCollectionViewCell.h"
+#import "HopscotchProject.h"
 
 @interface HopscotchProjectCollectionViewController ()
 @property (strong, nonatomic) HopscotchDatastore *dataStore;
@@ -66,9 +67,19 @@ static NSString * const reuseIdentifier = @"Cell";
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
+    HopscotchProjectCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
     
+    HopscotchProject *singleProject = self.dataStore.projects[indexPath.row];
     
+    cell.projectTitle.text = singleProject.title;
+    
+    cell.projectAuthor.text = singleProject.author;
+
+    NSURL *imageURL = [NSURL URLWithString:[singleProject.screenShotURL stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding]];
+    
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+       cell.projectImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:imageURL]];
+    }];
     
     return cell;
 }
