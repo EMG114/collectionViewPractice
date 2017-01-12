@@ -32,7 +32,9 @@ static NSString * const reuseIdentifier = @"Cell";
     
     self.dataStore = [HopscotchDatastore sharedDataStore];
     [self.dataStore getProjectsWithCompletion:^(BOOL success) {
-        [self.collectionView reloadData];
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            [self.collectionView reloadData];
+        }];
     }];
 }
 
@@ -64,7 +66,7 @@ static NSString * const reuseIdentifier = @"Cell";
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
+    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     
     
     
