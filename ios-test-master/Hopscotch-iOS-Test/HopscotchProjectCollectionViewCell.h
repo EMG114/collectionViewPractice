@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface HopscotchProjectCollectionViewCell : UICollectionViewCell
+@property (weak, nonatomic) IBOutlet UILabel *projectTitle;
+@property (weak, nonatomic) IBOutlet UILabel *projectAuthor;
+@property (weak, nonatomic) IBOutlet UIImageView *projectImage;
 
 @end

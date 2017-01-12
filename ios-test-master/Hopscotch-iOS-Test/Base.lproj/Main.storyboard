@@ -51,6 +51,11 @@
                                         </imageView>
                                     </subviews>
                                 </view>
+                                <connections>
+                                    <outlet property="projectAuthor" destination="7dU-4m-gTg" id="OhM-ak-wiJ"/>
+                                    <outlet property="projectImage" destination="Osh-fX-pRA" id="Obl-ze-W69"/>
+                                    <outlet property="projectTitle" destination="jdG-5b-fwc" id="uFB-9D-wwi"/>
+                                </connections>
                             </collectionViewCell>
                         </cells>
                         <connections>
