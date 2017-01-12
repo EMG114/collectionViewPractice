@@ -13,7 +13,6 @@
 @property (strong, nonatomic) NSMutableArray *projects;
 
 + (instancetype)sharedDataStore;
-//singleton class method
 
 - (void)getProjectsWithCompletion:(void (^)(BOOL success))completionBlock;
 

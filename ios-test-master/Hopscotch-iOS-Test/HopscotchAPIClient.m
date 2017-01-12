@@ -27,6 +27,8 @@ NSString *const HOPSCOTCH_API_URL = @"https://hopscotch-ios-test.herokuapp.com/p
         NSDictionary *jsonResponseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
         
         NSArray *projectsArray = [jsonResponseDictionary valueForKey:@"projects"];
+        
+        NSLog(@"%@",projectsArray);
                                           
         completionBlock(projectsArray);
     }];

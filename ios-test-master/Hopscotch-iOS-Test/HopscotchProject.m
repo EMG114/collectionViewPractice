@@ -20,10 +20,7 @@
         self.title = dictionary[@"title"];
         self.author = dictionary[@"author"];
         self.screenShotURL = dictionary[@"screenshot_url"];
-        
-        
     }
-    
     return self;
     
     

@@ -41,7 +41,8 @@
             
             [self.projects addObject:currentObject];
         }
-        
+    
+        NSLog(@"%@",self.projects);
         completionBlock(YES);
     }];
 
