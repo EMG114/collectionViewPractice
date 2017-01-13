@@ -62,24 +62,47 @@ static NSString * const reuseIdentifier = @"Cell";
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    NSLog(@"%d", self.dataStore.projects.count);
     return self.dataStore.projects.count;
     
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    NSLog(@"Is this getting called");
+    
     HopscotchProjectCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
     
     HopscotchProject *singleProject = self.dataStore.projects[indexPath.row];
-    
     cell.projectTitle.text = singleProject.title;
-    
     cell.projectAuthor.text = singleProject.author;
-
-    NSURL *imageURL = [NSURL URLWithString:[singleProject.screenShotURL stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding]];
     
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-       cell.projectImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:imageURL]];
-    }];
+
+//    NSURL *imageURL = [NSURL URLWithString:[singleProject.screenShotURL stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding]];
+    
+//    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+//       cell.projectImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:imageURL]];
+//    }];
+    
+    if (singleProject.image == nil){
+        
+        NSString *url = singleProject.screenShotURL;
+        
+        NSURL *nsurl = [NSURL URLWithString:url];
+        
+        NSURLSession *thisSession = [NSURLSession sharedSession];
+        
+        NSURLSessionDataTask *thisTask = [thisSession dataTaskWithURL:nsurl completionHandler:^(NSData *data, NSURLResponse *response, NSError *error)
+        {
+            cell.projectImage.image = [UIImage imageWithData:data];
+            
+        }];
+        
+        [thisTask resume];
+    }
+    else {
+        cell.projectImage.image = [UIImage imageWithData:singleProject.screenShotURL];
+    }
     
     return cell;
 }
