@@ -84,6 +84,8 @@ static NSString * const reuseIdentifier = @"Cell";
 //       cell.projectImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:imageURL]];
 //    }];
     
+    //The idea here was to make sure to have that url to the screenshot and then use that to update the projectImage. And then wrap the update of the UI element using NSOperation to update the main queue hence updating the UI 
+    
     if (singleProject.image == nil){
         
         NSString *url = singleProject.screenShotURL;
